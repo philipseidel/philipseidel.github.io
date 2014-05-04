@@ -1,0 +1,52 @@
+---
+layout: post
+title: ! 'Scalability Rules: 50 Principles for Scaling Web Sites'
+categories:
+- Operations
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: info@philipseidel.com
+  display_name: Phil
+  first_name: Phil
+  last_name: ''
+---
+<p>[amazon_template template="thumbnail-left" id="0321753887"][/amazon_template]This was a decent book with some real concrete rules for building scalable architectures.  I really enjoyed reading it because it wasn't full of a lot of cruft but rather it got right to the point.  Each rule was clearly identified and explained which makes it quick and easy to review when the time comes.</p>
+<p>Below are a list of my favorite rules from the book.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><!--more--></p>
+<ul>
+<li>Resist the urge to overengineer solutions by testingease of understanding with fellow engineers.</li>
+<li>Teams can save a lot of money and time by thinking of how to scale solutions early, implementing (coding)them a month or so before they are needed,and implementing them days before the customer rush or demand.</li>
+<li>Minimize the number of DNS lookups required to download pages,but balance this with the browsers limitation forsimultaneous connections.</li>
+<li>Reduce or combine objects but balance this with maximizing simultaneous connections.</li>
+<li>Dont get caught in the trap of expecting to scale up only to find out that youve run out of faster and larger systemsto purchase.</li>
+<li>When implementing disaster recovery, lower your cost of disaster recovery by designing your systems to leveragethree or more live data centers. Use the spare capacity for spiky demand when necessary.</li>
+<li>Design to leverage virtualization and the cloud to meet unexpected spiky demand.</li>
+<li>While firewalls are useful,they are often over-used and represent both an availability and scalability concern if not designed and implemented properly.</li>
+<li>Use the right storage tool for your data. Don't get lured into sticking everything in a relational database just because you are comfortable accessing data in a database.</li>
+<li>Never read what you just wrote for the purpose of validation. Store data in a local or distributed cache if it is required for operations in the near future.</li>
+<li>Redirects in general delay the user,consume computation resources,and are prone to errors.</li>
+<li>CDNs are a fast and simple way to offset spikiness of traffic as well as traffic growth in general. Make sure youperform a cost-benefit analysis and monitor the CDN usage.</li>
+<li>Use Expires headers to reduce requests and improve the scalability and performance of your system.</li>
+<li>Leverage Ajax and cache Ajax calls as much as possible to increase user satisfaction and increase scalability.</li>
+<li>Page caches are a great way to offload dynamic requests and to scale cost effectively.</li>
+<li>Application caching provides the ability to scale cost effectively,but should be complmentary to the architecture of the sys-tem.</li>
+<li>A fairly straightforward object cache implementation can save a lot of computational resources on application servers ordatabase servers.</li>
+<li>Watch your customers or use A/B testing to deter-mine what works. Use postmortems to learn from incidents and problems in production.</li>
+<li>Ensure all releases have the ability to roll back,practice it in a staging or QA environment,and use it in production when necessary to resolve customer incidents.</li>
+<li>Never let a good failure go to waste. Learn from every one and identify the technology,people,and process issues that need to be corrected.</li>
+<li>Create a framework to disable and enable features of your product.</li>
+<li>The implementation of state limits scalability and increases cost.</li>
+<li>Try to avoid session data completely,but when needed,consider putting the data in users browsers.</li>
+<li>Many Web servers or languages offer simple server-based session management,but these are often fraughtwith problems such as user affiliation with specific servers.Implementing a distributed cache allows you to store session data in your system and continue to scale.</li>
+<li>Use asynchronous communication techniques to ensure that each service and tier is as independent as possible.This allows the system to scale much farther than if all components are closely coupled together.</li>
+<li>Think about how you will need to monitor your application as you are designing it.</li>
+</ul>

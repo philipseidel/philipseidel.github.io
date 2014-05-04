@@ -1,0 +1,23 @@
+---
+layout: post
+title: Double Check Your Optimizations
+categories:
+- Posts
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: info@philipseidel.com
+  display_name: Phil
+  first_name: Phil
+  last_name: ''
+---
+<p>We ran into an issue this weekend at work that probably could have been less impactful if we were able to get to access to a terminal session a little quicker.  The problem was triggered by a memory leak in a logging daemon which consumed the majority of the memory on the server which in turn caused our caching server to swap and slow down under high load.  Once the caching server slowed down it started to allocate additional threads because it was handling more connections and processing requests at a slower rate.  While this normally would only result it poor performance it actually wound up making the server unmanageable because 30,000 threads were allocated, which not surprisingly brought the server to its knees.  The desired result of the configuration change was to increase the number of thread pools so that there was a single pool per cpu core while keeping the maximum number of threads under 5000.  If this was working as expected the processes would have allocated 5000 threads and we would have been able to get into the system to manage it.  Unfortunately, it was overlooked that one of these settings had its role changed in a new release of the software which in turn resulted in having the potential to allocate a much higher number of threads than what was desired.  We had been running with this configuration for months and might never have seen this issue if it wasn't for the memory leak; however, it is an important reminder to ensure you have a very good understanding of the purpose of a configuration setting before making the change.</p>
+<p><a href="http://www.philipseidel.com/wp-content/uploads/2012/09/a23a0b553042d4a9eeab1f6f84f5a3e9-1.jpg"><img class="alignleft size-large wp-image-546" title="a23a0b553042d4a9eeab1f6f84f5a3e9-1" alt="" src="http://www.philipseidel.com/wp-content/uploads/2012/09/a23a0b553042d4a9eeab1f6f84f5a3e9-1-450x145.jpg" width="450" height="145" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="http://www.philipseidel.com/wp-content/uploads/2012/09/9b4cefbf71d570bc86f155847bb673ba-1.jpg"><img class="alignleft size-large wp-image-548" title="9b4cefbf71d570bc86f155847bb673ba-1" alt="" src="http://www.philipseidel.com/wp-content/uploads/2012/09/9b4cefbf71d570bc86f155847bb673ba-1-450x166.jpg" width="450" height="166" /></a></p>

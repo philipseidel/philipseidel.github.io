@@ -1,0 +1,190 @@
+---
+layout: post
+title: ! 'Release It!: Design and Deploy Production-Ready Software'
+categories:
+- Operations
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: info@philipseidel.com
+  display_name: Phil
+  first_name: Phil
+  last_name: ''
+---
+<p>[amazon_template template="thumbnail-left" id="0978739213"][/amazon_template]I was first introduced to the concepts of this book when reading a number blog posts that Netflix had put together regarding building resilient systems.  After listening to an episode of <a href="http://foodfightshow.org/2013/05/netflix-oss.html" target="_blank">The Food Fight Show</a> I decided that this was a book that I needed to pick up and dig into a little deeper.  So many of the concepts are easy to grasp it leaves one wondering why don't we do this at our shop?  This is a good starting point for developing cynical software which expects bad things to happen and is never surprised when they do. Our systems need to be more resilient so that the system keeps processing transactions no matter what.</p>
+<p>Below are the takeaways I got out of this book.</p>
+<p><!--more--></p>
+<ul>
+<li>Bugs will happen. They cannot be eliminated, so they must be survived instead.</li>
+<li>You must not allow bugs to cause a chain of failures.</li>
+<li>Things happen in the real world that just do not happen in the lab, usually bad things. In the lab, all the tests are contrived by people who know what answer they expect to get. In the real world, the tests aren’t designed to have answers. Sometimes they’re just setting your software up to fail.</li>
+<li>Cynical software expects bad things to happen and is never surprised when they do. Cynical software doesn’t even trust itself, so it puts up internal barriers to protect itself from failures. It refuses to get too intimate with other systems, because it could get hurt.</li>
+<li>A resilient system keeps processing transactions, even when there are transient impulses, persistent stresses, or component failures disrupting normal processing.</li>
+<li>Run longevity tests. It’s the only way to catch longevity bugs.</li>
+<li>Sudden impulses and excessive strain both can trigger catastrophic failure.</li>
+<li>The original trigger and the way the crack spreads to the rest of the system, together with the result of the damage, are collectively called a failure mode.</li>
+<li>Once you accept that failures will happen, you have the ability to design your system’s reaction to specific failures.</li>
+<li>You can create safe failure modes that contain the damage and protect the rest of the system. This sort of self-protection determines the whole system’s resilience.</li>
+<li>You can decide what features of the system are indispensable and build in failure modes that keep cracks away from those features. If you do not design your failure modes, then you will get whatever unpredictable - and usually dangerous - ones happen to emerge.</li>
+<li>The more tightly coupled the architecture, the greater the chance this coding error can propagate. Conversely, the less coupled architectures act as shock absorbers, diminishing the effects of this error instead of amplifying them.</li>
+<li>One way to prepare for every possible failure is to look at every external call, every I/O, every use of resources, and every expected outcome and ask, "What are all the ways this can go wrong?"</li>
+<li>These patterns cannot prevent cracks in the system. Nothing can. There will always be some set of conditions that can trigger a crack. These patterns stop cracks from propagating. They help contain damage and preserve partial functionality instead of allowing total crashes.</li>
+<li>Highly interactive complexity arises when systems have enough moving parts and hidden, internal dependencies that most operators' mental models are either incomplete or just plain wrong.</li>
+<li>In a system exhibiting highly interactive complexity, the operator’s instinctive actions will have results ranging from ineffective to actively harmful. With the best of intentions, the operator can take an action, based on his own mental model of how the system functions, that triggers a completely unexpected linkage.</li>
+<li>In your systems, tight coupling can appear within application code, in calls between systems, or anyplace a resource has multiple consumers.</li>
+<li>In all cases, however, the main point to remember is that things will break. Don’t pretend you can eliminate every possible source of failure, because either nature or nurture will create bigger failures to wreck your systems. Assume the worst, because cracks happen.</li>
+<li>Combat integration point failures with the Circuit Breaker and Decoupling Middleware patterns.</li>
+<li>Cynical software should handle violations of form and function, such as badly formed headers or abruptly closed connections.</li>
+<li>To make sure your software is cynical enough, you should make a test harness - a simulator that provides controllable behavior - for each integration test.</li>
+<li>Setting the test harness to spit back canned responses facilitates functional testing. It also provides isolation from the target system when you are testing. Finally, each such test harness should also allow you to simulate various kinds of system and network failure.</li>
+<li>Every integration point will eventually fail in some way, and you need to be prepared for that failure.</li>
+<li>Integration point failures take several forms, ranging from various network errors to semantic errors.</li>
+<li>Failure in a remote system quickly becomes your problem, usually as a cascading failure when your code isn't defensive enough.</li>
+<li>Defensive programming via Circuit Breaker, Timeouts, Decoupling Middleware, and Handshaking will all help you avoid the dangers of Integration Points.</li>
+<li>A chain reaction happens because the death of one server makes the others pick up the slack. The increased load makes them more likely to fail. A chain reaction will quickly bring an entire layer down. Other layers that depend on it must protect themselves, or they will go down in a cascading failure.</li>
+<li>A cascading failure occurs when problems in one layer cause problems in callers.</li>
+<li>Cascading failures often result from resource pools that get drained because of a failure in a lower layer. Integration Points without Timeouts is a surefire way to create Cascading Failures.</li>
+<li>The most effective patterns to combat cascading failures are Circuit Breaker and Timeouts.</li>
+<li>A cascading failure occurs when cracks jump from one system or layer to another, usually because of insufficiently paranoid integration points.</li>
+<li>Circuit Breaker protects your system by avoiding calls out to the troubled integration point. Using Timeouts ensures that you can come back from a call out to the troubled one.</li>
+<li>Build the system to handle nothing but the most expensive transactions, and you will spend ten times too much on hardware.</li>
+<li>Each user’s session requires some memory. Minimize that memory to improve your capacity. Use a session only for caching so you can purge the session’s contents if memory gets tight.</li>
+<li>As often happens, adding complexity to solve one problem creates the risk of entirely new failure modes. Multithreading makes application servers scalable enough to handle the web’s largest sites, but it also introduces the possibility of concurrency errors.</li>
+<li>That is why I advocate supplementing internal monitors (such as log file scraping, process monitoring, and port monitoring) with external monitoring. A mock client somewhere (not in the same data center) can run synthetic transactions on a regular basis. That client experiences the same view of the system that real users experience. When that client cannot process the synthetic transactions, then there is a problem, whether or not the server process is running.</li>
+<li>A blocked thread is often found near an integration point. They can quickly lead to chain reactions. Blocked threads and slow responses can create a positive feedback loop, amplifying a minor problem into a total failure.</li>
+<li>Like Cascading Failures, the Blocked Threads anti-pattern usually happens around resource pools, particularly database connection pools.</li>
+<li>Always use Timeouts, even if it means you have to catch InterruptedException.</li>
+<li>All manner of problems can lurk in the shadows of third-party code. Be very wary. Test it yourself. Whenever possible, acquire and investigate the code for surprises and failure modes.</li>
+<li>You can avoid machine-induced self-denial by building a “shared-nothing” architecture. Where that is impractical, apply decoupling middleware to reduce the impact of excessive demand, or make the shared resource itself horizontally scalable through redundancy and a backside synchronization protocol. You can also design a fallback mode for the system to use when the shared resource is not available.</li>
+<li>If you have plenty of time to prepare and are using hardware load balancing for traffic management, you can set aside a portion of your infrastructure to handle the promotion or traffic surge.</li>
+<li>Fail Fast. That way, other front-end resources, such as web server and load balancer connections, are not tied up waiting for a useless or nonexistent response.</li>
+<li>Because the development and test environments rarely replicate production sizing, it can be hard to see where scaling effects will bite you.</li>
+<li>Depending on your infrastructure, you can replace point-to-point communication with the following: UDP broadcasts TCP or UDP multicast Publish/subscribe messaging Message queues
+<ul>
+<li>Broadcasts do the job but are not bandwidth efficient.</li>
+<li>Multicasts are more efficient, since they permit only the interested servers to receive the message.</li>
+<li>Publish/subscribe messaging is better still, since a server can pick up a message even if it wasn’t listening at the precise moment the message was sent.</li>
+</ul>
+</li>
+<li>Another scaling effect that can jeopardize stability is the “shared resource” effect.</li>
+<li>The most scalable architecture is the shared-nothing architecture. Each server operates independently, without need for coordination or calls to any centralized services. In a shared nothing architecture, capacity scales more or less linearly with the number of servers.</li>
+<li>The trouble with a shared nothing architecture is that it might scale better at the cost of failover.</li>
+<li>Too often, though, the shared resource will be allocated for exclusive use while a client is processing some unit of work.</li>
+<li>Patterns that work fine in small environments or one-to-one environments might slow down or fail completely when you move to production sizes.</li>
+<li>Point-to-point communication scales badly, since the number of connections increases as the square of the number of participants.</li>
+<li>Shared resources can be a bottleneck, a capacity constraint, and a threat to stability. If your system must use some sort of shared resource, stress test it heavily. Also, be sure its clients will keep working if the shared resource gets slow or locks up.</li>
+<li>The fact is that the front end always has the ability to overwhelm the back end, because their capacities are not balanced.</li>
+<li>For the front end, Circuit Breaker will help by relieving the pressure on the back end when responses get slow or connections get refused. For the back end, use Handshaking to inform the front end to throttle back on the requests.</li>
+<li>By mimicking a back-end system wilting under load, the test harness helps you verify that your front-end system degrades gracefully.</li>
+<li>Use capacity modeling to make sure you’re at least in the ballpark.  Don’t just test your system with normal workloads.</li>
+<li>A system is resilient, it might slow down - even start to fail fast if it can’t process transactions within the allowed time - but it should recover once the load goes down.</li>
+<li>Crashing, hung threads, empty responses, or nonsense replies indicate your system won’t survive and might just start a cascading failure.</li>
+<li>Check the ratio of front-end to back-end servers, along with the number of threads each side can handle.</li>
+<li>Generating a slow response is worse than refusing a connection or returning an error, particularly in the context of middle-layer services in an SOA.</li>
+<li>A quick failure allows the calling system to finish processing the transaction rapidly. Whether that is ultimately a success or a failure depends on the application logic. A slow response, on the other hand, ties up resources in the calling system and the called system.</li>
+<li>Give your system the ability to monitor its own performance</li>
+<li>When a moving average over the last twenty transactions exceeds one hundred milliseconds, your system could start refusing requests.</li>
+<li>If your system tracks its own responsiveness, then it can tell when it is getting slow. Consider sending an immediate error response when the average response time exceeds the system’s allowed time.</li>
+<li>For every service, inside your company or outside, your system depends on transport layer availability, naming services (DNS), and application-level protocols. Any one of those layers for any one of the external connections can fail. Unless every one of your dependencies is engineered for the same SLA you must provide, then the best you can possibly do is the SLA of the worst of your service providers.</li>
+<li>Make sure your application can continue to function without the remote system. Degrade gracefully.</li>
+<li>Design with skepticism, and you will achieve resilience.</li>
+<li>In any API or protocol, the caller should always indicate how much of a response it is prepared to accept.</li>
+<li>The only sensible numbers are “zero,” “one,” and “lots,” so unless your query selects exactly one row, it has the potential to return too many.</li>
+<li>Develop a recovery-oriented mind-set. At the risk of sounding like a broken record, I’ll say it again: expect failures. Apply these patterns wisely to reduce the damage done by an individual failure.</li>
+<li>Now and forever, networks will always be unreliable.</li>
+<li>Well-placed timeouts provide fault isolation; a problem in some other system, subsystem, or device does not have to become your problem.</li>
+<li>It is essential that any resource pool that blocks threads must have a timeout to ensure threads are eventually unblocked whether resources become available or not.</li>
+<li>That error-handling code, if done well, adds resilience.</li>
+<li>If the operation failed because of any significant problem, it is likely to fail again if retried immediately.</li>
+<li>Fast retries are very likely to fail again.</li>
+<li>Queue-and-retry ensures that once the remote server is healthy again, the overall system will recover.</li>
+<li>The Timeouts and Fail Fast patterns both address latency problems. The Timeouts pattern is useful when you need to protect your system from someone else’s failure. Fail Fast is useful when you need to report why you won’t be able to process some transaction. Fail Fast applies to incoming requests, whereas the Timeouts pattern applies primarily to outbound requests.</li>
+<li>It is a component designed to fail first, thereby controlling the overall failure mode.</li>
+<li>Detect excess usage, fail first, and open the circuit. More abstractly, the circuit breaker exists to allow one subsystem (an electrical circuit) to fail (excessive current draw, possibly from a short-circuit) without destroying the entire system.</li>
+<li>Once the danger has passed, the circuit breaker can be reset to restore full function to the system.</li>
+<li>This differs from retries, in that circuit breakers exist to prevent operations rather than re-execute them.</li>
+<li>If the call succeeds, nothing extraordinary happens. If it fails, however, the circuit breaker makes a note of the failure. Once the number of failures (or frequency of failures, in more sophisticated cases) exceeds a threshold, the circuit breaker trips and “opens” the circuit.</li>
+<li>When the circuit is "open," calls to the circuit breaker fail immediately, without any attempt to execute the real operation.</li>
+<li>After a suitable amount of time, the circuit breaker decides that the operation has a chance of succeeding, so it goes into the "half-open" state. In this state, the next call to the circuit breaker is allowed to execute the dangerous operation. Should the call succeed, the circuit breaker resets and returns to the “closed” state, ready for more routine operation. If this trial call fails, however, the circuit breaker returns to the “open” state until another timeout elapses.</li>
+<li>Circuit breakers are a way to automatically degrade functionality when the system is under stress.</li>
+<li>Changes in a circuit breaker’s state should always be logged, and the current state should be exposed for querying and monitoring.</li>
+<li>Circuit breakers are effective at guarding against integration points, cascading failures, unbalanced capacities, and slow responses. They work so closely with timeouts that they often track timeout failures separately from execution failures.</li>
+<li>By partitioning your systems, you can keep a failure in one part of the system from destroying everything.</li>
+<li>The goal is to identify the natural boundaries that let you partition the system in a way that is both technically feasible and financially beneficial.</li>
+<li>It is often helpful to reserve a pool of request-handling threads for administrative use.</li>
+<li>Don’t leave log files on production systems. Copy them to a staging area for analysis.</li>
+<li>Even when failing fast, be sure to report a system failure (resources not available) differently than an application failure (parameter violations or invalid).</li>
+<li>The Fail Fast pattern improves overall system stability by avoiding slow responses. Together with timeouts, failing fast can help avert impending cascading failures.</li>
+<li>In the theme of "don’t do useless work," make sure you will be able to complete the transaction before you start it.</li>
+<li>Handshaking is all about letting the server protect itself by throttling its own workload. Instead of being victim to whatever demands are made upon it, the server should have a way to reject incoming requests.</li>
+<li>Handshaking can be most valuable when unbalanced capacities are leading to slow responses. If the server can detect that it will not be able to meet its SLAs, then it should have some means to ask the caller to back off.</li>
+<li>Circuit breakers are a stopgap you can use when calling services that cannot handshake. In that case, instead of asking politely whether the server can handle the request, you just make the call and track whether it fails.</li>
+<li>Health-check requests are an application-level workaround for the lack of Handshaking in HTTP.</li>
+<li>The main theme of this book, however, is that every system will eventually end up operating outside of spec; therefore, it’s vital to test the local system’s behavior when the remote system goes wonky.</li>
+<li>A good test harness should be devious. It should be as nasty and vicious as real-world systems will be. The test harness should leave scars on the system under test.</li>
+<li>A mock object improves the isolation of a unit test by cutting off all the external connections. Mock objects are often used at the boundaries between layers. Some mock objects can be set up to throw exceptions when the object under test invokes their methods.</li>
+<li>A test harnesses differs from mock objects, in that a mock object can be trained to produce behavior that conforms only to the defined interface. A test harnesses runs as a separate server, so it is not obliged to conform to any interface. It can provoke network errors, protocol errors, or application-level errors.</li>
+<li>The test harness should act like a little hacker, trying all kinds of bad behavior to simulate all sorts of messy, real-world failure.</li>
+<li>Message-oriented middleware decouples the endpoints in both space and time. Because the requesting system doesn’t just sit around waiting for a reply, this form of middleware cannot produce a cascading failure.</li>
+<li>Designing asynchronous processes is inherently harder. The process must deal with exception queues, late responses, callbacks (computer-to-computer as well as human-to-human).</li>
+<li>The more fully you decouple individual servers, layers, and applications, the fewer problems you will observe with Integration Points, Cascading Failures, Slow Responses, and Blocked Threads.</li>
+<li>Performance measures how fast the system processes a single transaction.</li>
+<li>Throughput describes the number of transactions the system can process in a given time span.</li>
+<li>Throughput is always limited by a constraint in the system—a bottleneck. Optimizing performance of any non-bottleneck part of the system will not increase throughput.</li>
+<li>The maximum throughput a system can sustain, for a given workload, while maintaining an acceptable response time for each individual transaction is its capacity</li>
+<li>In every system, exactly one constraint determines the system’s capacity. This constraint is whatever limiting factor hits its ceiling first. Once the constraint is reached, all other parts of the system will begin to either queue up work or drop it on the floor.</li>
+<li>Once you find the constraint, you can reliably predict capacity improvements based on changes to that constraint.</li>
+<li>To improve capacity, you must elevate the constraint by increasing the resource needed for the constraining variable or decreasing your usage of the resource.</li>
+<li>Slow response is actually worse than no response. When that happens, the slowdown in one layer can trigger a cascading failure in another layer. This can make it difficult to separate capacity questions from stability questions.</li>
+<li>You get perfect horizontal scaling when each server can run without knowing anything about any other server. These "shared-nothing" architectures provide nearly linear growth in capacity.</li>
+<li>Cluster architectures also allow horizontal scaling, though they usually have somewhat less than linear benefit, because of the overhead of cluster management.</li>
+<li>Place safety limits on everything: timeouts, maximum memory consumption, maximum number of connections, and so on. Protect request-handling threads.</li>
+<li>additional request-handling threads do nothing for throughput, once resource contention begins.</li>
+<li>Ideally, every thread immediately gets the resource it needs. To guarantee this, make the resource pool size equal to the number of threads. Although this alleviates the contention in the application server, it might shift the problem to the database server.</li>
+<li>The "location transparency" philosophy for remote objects claims that a caller should be unaware of the difference between a local call and a remote call. This philosophy has been widely discredited for two major reasons. First, remote calls exhibit different failure modes than local calls. They are vulnerable to network failures, failure in the remote process, and version mismatch between the caller and server, to name a few. Second, location transparency leads developers to design remote object interfaces the same way they would design local objects, resulting in a chatty interface.</li>
+<li>Nobody deliberately selects a design with the purpose of harming the system’s capacity; instead, they select a functional design without regard to its effect on capacity.</li>
+<li>Optimization can increase the performance of individual routines by percentages, but it cannot lead you to fundamentally better designs.</li>
+<li>Resource pools eliminate connection setup time.</li>
+<li>Undersized resource pools lead to contention and increased latency. This defeats the purpose of pooling the connections in the first place. Monitor calls to the connection pools to see how long your threads are waiting to check out connections.</li>
+<li>It’s also wise to avoid caching things that are cheap to generate.</li>
+<li>Precomputing results can reduce or eliminate the need for caching.</li>
+<li>Every cache should have an invalidation strategy to remove items from cache when their source data changes.</li>
+<li>You will need a combination of technical data and business metrics to understand the past and present state of your system in order to predict the future. Good data enables good decision making. In the absence of trusted data, decisions will be made for you, based on somebody’s political clout,prejudices, etc.</li>
+<li>When observing a component-level outage - for example, a network failure - an administrator should be able to see which business processes are affected. This facilitates both communication with the sponsors and proper prioritization of the problem.</li>
+<li>Messages should include an identifier that can be used to trace the steps of a transaction.</li>
+<li>Linking operations to business results requires the ability to correlate "systems" information with "business."</li>
+<li>The monitoring system should be aware not only of the systems but also of the business features those systems serve. In fact, it should be able to identify the impact to those features anytime there is a system event - whether that event is a problem or metric deviating from normal.</li>
+<li>An effective feedback process can be described as “acting responsively to meaningful data.” Transparency in the systems only provides access to the data. Humans in the loop still need to view and interpret the information.</li>
+<li>“O-O-D-A Loop,” an acronym for Observe-Orient-Decide-Act.</li>
+<li>Complete knowledge of a situation is impossible and, even if it were attainable, quickly irrelevant.</li>
+<li>The O-O-D-A Loop requires correct observations, unclouded by wishful thinking or confirmation bias - definitely a tall order. Orientation is the process of updating a mental map of possibilities and options according to the previous map and the new observations. Good orientation acknowledges what is possible and impossible.</li>
+<li>Examine the system: current state, historical patterns, and future projections. Interpret the data. This always occurs within the context of some person’s mental model of the system. Evaluate potential actions, including the costs of each and, perhaps, taking no action at all. Decide on a course of action. Implement the chosen course of action. Observe the new state of the system.</li>
+<li>Observers should watch for both trends and outliers.</li>
+<li>Review the past week’s problem tickets. Look for recurring problems and those that consume the most time.</li>
+<li>Every month, look at the total volume of problems.</li>
+<li>Either daily or weekly, look for exceptions and stack traces in log files. Correlate these to find the most common sources of exceptions. Consider whether these indicate serious problems or just gaps in the code’s error handling.</li>
+<li>As root causes get corrected, as new code releases come out, and as traffic patterns change, the emphasis will shift from reactive to predictive analysis.</li>
+<li>For each metric being reviewed, consider each of the following. How does it compare to the historical norms?  How long could the trend continue?</li>
+<li>Transparency makes the difference between a system that improves over time in production and one that stagnates or decays.</li>
+<li>Transparency requires access to the internals of the computers and software. Exposing those internals is the first prerequisite. Next, some means for collecting and understanding the data points is required.</li>
+<li>Finally, some feedback process is needed to act on the acquired knowledge.</li>
+<li>The extreme form of unit testing is test-driven design (TDD). In TDD, you write the unit test first. It then serves as a functional specification. You write just enough code to make the test pass and not one line more.</li>
+<li>Testing the object means you will need to supply stubs or mocks in place of real objects. That means the object must expose its dependencies as properties, thereby making them available for dependency injection in the production code.</li>
+<li>Large complex machines, however, exhibit many undesirable failure modes. They break often. They might be crippled when one part breaks. Designing and building such architectures requires the kind of command and control hierarchy that has failed time and time again.</li>
+<li>Systems should exhibit loose clustering.</li>
+<li>This implies that individual servers do not have differentiated roles or at least that any differentiated roles are present in more than one service.</li>
+<li>The members of a loose cluster can be brought up or down independently of each other.</li>
+<li>The members of one cluster or tier should have no specific dependencies—or knowledge of—the individual members of another tier. The dependencies should be on a virtual IP address or service name that represents the cluster as a whole.</li>
+<li>Good architecture embraces the need for change as fundamental - an engine to drive improvement, rather than a beast to be controlled.</li>
+<li>Integration databases—don't do it! Seriously! Not even with views. Not even with stored procedures. Take it up a level, and wrap a web service around the database. Then make the web service redundant and accessed through a virtual IP.</li>
+<li>Database “integrations” are pure evil. They violate encapsulation and information hiding by exposing the most intimate details about a system’s inner workings.</li>
+<li>The faster that feedback loop operates, the more accurate those improvements will be.</li>
+<li>Reduce the effort needed, remove people from the process, and make the whole thing more automated and standardized.</li>
+<li>Don’t risk customers for an arbitrary release date.</li>
+<li>Either systems grow over time, adapting to their changing environment, or they decay until their costs outweigh their benefits and then die.</li>
+</ul>

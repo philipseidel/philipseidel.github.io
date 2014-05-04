@@ -1,0 +1,57 @@
+---
+layout: post
+title: The Phoenix Project
+categories:
+- Non-Fiction
+- Operations
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: info@philipseidel.com
+  display_name: Phil
+  first_name: Phil
+  last_name: ''
+---
+<p>[amazon_template template="thumbnail-left" id="0988262592"][/amazon_template] I managed to pick up a copy of The Phoenix Project when it was available for free on the kindle a few months back but I didn't get around to reading it until a recent vacation.  To be honest I didn't know what to expect as I haven't read to many novels in the technology genre; however, I have to say it was an interesting read.  Throughout the book there were countless scenarios where I could relate to Bill, Wes, Brent and the rest of the team as they struggle to reduce technical debt while tackling business initiatives with constrained resources.  Just like the operations team at Parts Unlimited we too are making improvements in how we deliver product and infrastructure changes throughout the environment.  The Phoenix Project was an enjoyable read and also shed some light in places where I think our team can make some improvements at the office.<br />
+If you are looking for additional information on some of the concepts depicted in The Phoenix Project there is a good blog post here: <span style="text-decoration: underline;">http://itrevolution.com/learn-more-about-concepts-in-phoenix-project/</span></p>
+<p>Below are some of the notes I took while reading.</p>
+<p><!--more--></p>
+<ul>
+<li>One can't make commitments to others without first knowing what the current commitments are.  All work needs to be tracked so that resources can be managed to keep constraints free.</li>
+<li>Any improvement made after the bottleneck is useless, because it will always remain starved, waiting for work from the bottleneck. And any improvements made before the bottleneck merely results in more inventory piling up at the bottleneck.</li>
+<li>We need to ensure the fast, predictable, and uninterrupted flow of planned work that delivers value to the business while minimizing the impact and disruption of unplanned work, so we can provide stable, predictable, and secure operations.</li>
+<li>The Three Ways
+<ol>
+<li>Figure out how to create a fast flow of work as it moves from engineering to operations.</li>
+<li>Shorten and amplify feedback loops, so we can fix quality at the source and avoid rework.</li>
+<li>Create a culture that simultaneously fosters experimentation, learning from failure, and understanding that repetition and practice are the prerequisites to</li>
+</ol>
+</li>
+<li>Practice incident calls and fire drills so that everyone used to solving problems in a methodical way.</li>
+<li>Unplanned work is recovery work, which almost always takes you away from your goals. That’s why it’s so important to know where your unplanned work is coming from.</li>
+<li>Being able to take needless work out of the system is more important than being able to put more work into the system. To do that, you need to know what matters to the achievement of the business objectives, whether it’s projects, operations, strategy, compliance with laws and regulations, security, etc.</li>
+<li>If you’re not paying down technical debt your problems and amount of unplanned work continues to increase over time.  Left unchecked, technical debt will ensure that the only work that gets done is unplanned work.</li>
+<li>There are four types of work: business projects, operations projects, changes, and unplanned work.</li>
+<li>When all you do is react, there’s not enough time to do the hard mental work of figuring out whether you can accept new work. So, more projects are crammed onto the plate, with fewer cycles available to each one, which means more bad multitasking, more escalations from poor code</li>
+<li>The goal is to increase the throughput of the entire system, not just increase the number of tasks being done.</li>
+<li>Getting steps documented means you’re able to enforce some level of consistency and quality. This not only reduces the number of dependencies on constraints but you’re generating documentation that will enable automation.</li>
+<li>Properly elevating preventive work improves daily work which is even more important than doing daily work.  It almost doesn’t matter what you improve, as long as you’re improving something. Why? Because if you are not improving, entropy guarantees that you are actually getting worse.  Use two week improvement cycles to continue to pay down technical debt.</li>
+<li>Resilience engineering tells us that we should routinely inject faults into the system, doing them frequently, to make them less disruptive.</li>
+<li>The wait time for a given resource is the percentage that resource is busy, divided by the percentage that resource is idle.</li>
+<li>The operational risks posed by IT need to be managed just like any other business risk. In other words, they’re not IT risks. They’re business risks.</li>
+<li>Make releases smaller and shorter and deliver cash back faster.</li>
+<li>A great team performs best when they practice. Practice creates habits, and habits create mastery of any process.</li>
+<li>There should be absolutely no way that the Dev and QA environments don’t match the production.</li>
+<li>The flow of work goes in one direction only: forward. Create a system of work in operations that does that.</li>
+<li>An inevitable consequence of long release cycles is that you’ll never hit the internal rate of return targets, once you factor in the cost of labor.</li>
+<li>Dev and Ops working together, along with QA and the business, are a super-tribe that can achieve amazing things. They also knew that until code is in production, no value is actually being generated, because it’s merely WIP stuck in the system. He kept reducing the batch size, enabling fast feature flow. In part, he did this by ensuring environments were always available when they were needed. He automated the build and deployment process, recognizing that infrastructure could be treated as code, just like the application that Development ships. That enabled him to create a one-step environment creation and deployment pipeline.</li>
+<li>You need to get everything in version control. Everything. Not just the code, but everything required to build the environment. Then you need to automate the entire environment creation process. You need a deployment pipeline where you can create test and production environments, and then deploy code into them, entirely on-demand. That’s how you reduce your setup times and eliminate errors.</li>
+<li>Get humans out of the deployment and automate everything.</li>
+<li>Business agility is not just about raw speed. It’s about how good you are at detecting and responding to changes in the market and being able to take larger and more calculated risks.</li>
+<li>Features are always a gamble. If you’re lucky, ten percent will get the desired benefits. So the faster you can get those features to market and test them, the better off you’ll be.</li>
+</ul>

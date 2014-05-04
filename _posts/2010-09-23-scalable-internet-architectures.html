@@ -1,0 +1,103 @@
+---
+layout: post
+title: Scalable Internet Architectures
+categories:
+- Operations
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: info@philipseidel.com
+  display_name: Phil
+  first_name: Phil
+  last_name: ''
+---
+<p>[amazon_template template="thumbnail-left" id="067232699X"][/amazon_template]This one of my favorite books because so many of the topics discussed within it are issues that I have had to deal with first hand at my current position.  It gives some good insight as to what it means to work in large complex systems as well as some instructing solutions to real world problems.</p>
+<p>Here are a few of my notes from book which I like to check in on from time to time to get a refresher.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><!--more--></p>
+<ul>
+<li>It is important to understand how what you are building will be used and design for scalability where parts need to scale</li>
+<li>Horizontal scaling is when the capacity of a system can be increased by adding more of the same hardware or software; this is the only "real" way to scale</li>
+<li>Vertical scaling is accomplished by adding faster and bigger hardware.  It is an expensive strategy and should only be used for solving problems where no good solutions are available on the market</li>
+<li>The goal should be to build a system that can sustain n users and architect it in a way that n+/n- (scaling out/scaling down) users won't require changes in architecture or application design</li>
+<li>Adding independent components to an architecture complicates linearly; adding components on which other components depend to an architecture complicates it exponentially</li>
+<li>An architecture with efficient and maintainable components can scale much better than an efficient and maintainable monolithic architecture</li>
+<li>Anticipating change is what makes a good Internet architect</li>
+<li>Scaling systems is a balance between cost, complexity, maintainability, and implementation latency</li>
+<li>Having the operations group available and participating regularly in the business and development meetings is extremely valuable; one of the most important ingredients of good design</li>
+<li>Developers have no problems pushing code to satisfy business needs without regard to the fact that they can take down the production environment</li>
+<li>It is important to identify a set of principles for avoiding failure</li>
+<li>Buy today's commodity hardware for a better return on investment as you will eventually saturate a machine when trying to scale it up</li>
+<li>Uncontrolled change is the biggest cause of failure</li>
+<li>You need a plan when implementing any change in the production environment; this plan should identify steps to get from A to B, B back to A, restoring back to bare metal and a test of the first 2 scenarios</li>
+<li>It is always a good idea to have a tested plan for reverting a change</li>
+<li>Having a plan will result in 100% confidence that you can recover and that downtime will be kept to a minimum when failures occur</li>
+<li>Unit testing is great for ensuring that a system will arrive at an expected outcome given a certain input; it can't test every possible condition</li>
+<li>Any reasonable means of reducing the amount of failures and increasing the overall product quality should be considered so even though unit testing takes a little bit more time it is worth it</li>
+<li>Version control allows you to understand how code and configuration changes, by whom, and for what reason; it is critical for troubleshooting production issues</li>
+<li>Having certain directories on hosts automatically checked in helps to lessen the madness of undocumented and emergency changes</li>
+<li>The ability to restore a configuration is much less valuable than understanding how it changed over time</li>
+<li>Language selection and scalability have little to do with each other; architectural design and implementation strategy dictate how scalable a system is</li>
+<li>It is essential that you can see the oversell architectural plans and understand the purpose of the overall system</li>
+<li>It is not essential that every participant be an expert in any or all of those areas, it is essential they be wholly competent in at least one are and always cognizant of the others</li>
+<li>The criticality of an environment has nothing to do wheat its scale</li>
+<li>Load balancing attempts to compile multiple resources to handle higher loads and is completely related to scale</li>
+<li>HA is simply taking a single service and ensuring that a failure of one of its components will not result in an outage</li>
+<li>Building a system that guarantees100% availability is impossible 99.999% is only 5 minutes of downtime a year</li>
+<li>Availability can be thought of as a lack unplanned outages; planned maintenance is a good thing</li>
+<li>Monitoring the architecture from top to bottom and the bottom up is necessary to ensure that failed pieces are caught early and dealt with quickly</li>
+<li>Monitoring should account for system metrics as well as business metrics</li>
+<li>Monitoring things no longer of importance while failing to monitor newly introduced metrics can results in a false sense of security</li>
+<li>Monitors should never be taken offline; services should be monitored but failures will not be escalated during maintenance</li>
+<li>Staging should be an exact copy of production</li>
+<li>A good architecture must allow for operations and engineering to watch things break as watching these things happen leads to understanding the cause and in turn finding solutions</li>
+<li>One aspect of being cost effective is minimizing the required infrastructure and another is minimizing the host of maintain the architecture</li>
+<li>Independent architecture components added to a system complicate it linearly while dependent components added complicate it exponentially</li>
+<li>Scalability means that the architecture can grow and shrink without fundamental change</li>
+<li>The performance of any one component can drastically affect how efficiently a system can scale</li>
+<li>The only way to increase performance of a complex system is to reduce the resource consumption of one of its individual components; it is fundamental that tuning strategies be employed through the entire stack</li>
+<li>The 90/10 principle indicates that 90%of the execution time is spent in 10% of the code; do not choose the slowest component or code to focus on but rather that which has the most common execution path</li>
+<li>The most valuable lessons in performance tuning come from building things wrong; it teaches the analytical processes required to anticipate further problems before they manifest themselves</li>
+<li>If you rely on redundant hardware for handling routine load then it isn't redundant hardware</li>
+<li>Highly available architectures result in more costs, equipment, services and complexity</li>
+<li>Load balancing is not HA</li>
+<li>Traditional HA system take the failover approach where there are a lot of system pairs where one machine is always idle</li>
+<li>In a peer based HA system the cluster is responsible for providing services; each machine in the cluster assumes the responsibility over a subset of those services</li>
+<li>A systems engineer is the performance and availability engineer response for ensuring the system continues to work in the light of failure</li>
+<li>RR load balancing is flawed because it doesn't give an overworked server a chance to settle down (unless a health check is failed)</li>
+<li>Least connection load balancing is not a good idea if there are several load balancers making independent decisions</li>
+<li>Weighting load balancing is strange because load balancing is about effectively allocating available resources rather than total resources</li>
+<li>Having multiple load balancers always complicates things no matter what the load balancing algorithm</li>
+<li>Liner scaling is a falsehood because our algorithms for allocating requests are not perfect</li>
+<li>Expect for 70% utilization on each server in clusters with 3 or more nodes</li>
+<li>Using session affinity has some pretty obvious implications on fault tolerance</li>
+<li>Most content, by volume and by count, is static</li>
+<li>Web requests are short lived and this results in a lot of context switching of processes off and on the cpu</li>
+<li>Any time a task must perform i/o (network, disk, etc) it has to wait and thus is switched out</li>
+<li>Reverse proxy caches/accelerators have high throughput and high concurrency; they reduce traffic to backend servers as well as TCP overhead that backend servers would have if dealing with slow clients</li>
+<li>ARP spoofing is done by sending unsolicited/gratuitous ARP responses to devices on local network</li>
+<li>By providing static resources closer to the user we reduce latency and reduce the amount of congested networks though which the requests flow</li>
+<li>DNS round trip time can be used by local name servers to use authoritative servers which are closer and those optimize the query</li>
+<li>Anycast works by giving multiple machines the same IP address and having the networks to which they are attached announce their IP addresses over the route with the shortest path and thus closest server</li>
+<li>Anycast works real well with UDP protocols that just require a single request and response such as DNS</li>
+<li>Application tuning can only increase performance but this won't help if it can't scale horizontally</li>
+<li>A proxy cache is an accelerator that sits between the client and the application; this provides reduced latency and connection overhead between application and client since the client is on the same network and allows for the application to focus on doing the "real" work of the request by generating the content</li>
+<li>Integrated caches sit within the application and are used for computational reuse and expensive data storage; requires cache invalidation strategy</li>
+<li>The vast majority of data on the Internet has a high read-to-write ratio</li>
+<li>Write-back caches are used to store expensive write operations of data that is commonly read in cache; once it is full and entries are removed they are written to the backing store; they are not fault tolerant unless there is a backup device such as a battery in a RAID controller</li>
+<li>Write-true caches exploit the fact that reads often occur on data most recently written; they write the data to cache and the backing store</li>
+<li>Distributed caches distribute data across multiple places; when one node stores the data in cache the others will benefit</li>
+<li>Caching solutions speed things up but more importantly they create scalability by reducing the contention on a shared resource; this resource access takes time, requires context switches, and is generally good to avoid</li>
+<li>As applications scale horizontally the stress on shared resources increases so the goal should be to eliminate most of the shared resource usage</li>
+<li>TTL based caches are not great because the timeouts are arbitrary and not reflective of the underlying data which might or might not have changed; this might be a good solution for applications which have a tolerant margin of error</li>
+<li>Ideally we can cache things forever and when they change we purge them</li>
+<li>The cookie is a great tool for scaling the storage of user pertinent data</li>
+<li>The key to successful caching is understanding the try nature of the data, how frequently it changes and where it is used</li>
+</ul>
+<p>&nbsp;</p>

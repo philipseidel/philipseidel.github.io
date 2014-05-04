@@ -1,0 +1,64 @@
+---
+layout: post
+title: Surge 2012
+categories:
+- Operations
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _oembed_95d0041b614f8722115a10840bdc0e9a: <iframe width="500" height="375" src="http://www.youtube.com/embed/tDacjrSCeq4?fs=1&feature=oembed"
+    frameborder="0" allowfullscreen></iframe>
+  _oembed_f292859aefb4706a5e6cdc5036d3a4a9: <iframe width="500" height="375" src="http://www.youtube.com/embed/tDacjrSCeq4?feature=oembed"
+    frameborder="0" allowfullscreen></iframe>
+author:
+  login: admin
+  email: info@philipseidel.com
+  display_name: Phil
+  first_name: Phil
+  last_name: ''
+---
+<p>I had the benefit of attending <a href="http://omniti.com/surge/2012" target="_blank">Surge</a> again this year but I have to say that I don't think it met my expectations.  The conference opened up with a keynote from a Forrester research analyst that <a href="http://blogs.forrester.com/mike_gualtieri/11-02-07-i_dont_want_devops_i_want_noops" target="_blank">doesn't like the concept of devops</a>.  Call me crazy but this is probably not someone you want opening a conference with an audience filled with ops and developers.  This point aside the message was less than insightful or even relavant to those topics we are craving at a conference like Surge.  Compared to the previous keynotes (Cantrill/Allspaw and Ben Fried) this was a definite bust.  All-in-all most of the sessions that I attended were interesting but I don't think there were any real takeaways as there were in previous years.  I am definitely questioning whether or not I will be attending next year's conference.</p>
+<p><!--more--></p>
+<p>Here are the talks that I attended.</p>
+<ul>
+<li><a href="http://omniti.com/surge/2012/sessions/scaling-pinterest">Scaling Pinterest</a></li>
+<li><a href="http://omniti.com/surge/2012/sessions/they-own-the-pipes-you-own-the-water-low-level-network-optimization-with-cheap-software">They Own the Pipes. You Own the Water. Low-Level Network Optimization…with Cheap Software</a>
+<ul>
+<li>This was a good presentation and there was some good data shared, however, it is mostly targeted at those engineers supporting both the client and the server which isn't something I really have to deal with on a day to day basis.  The basic strategy of the talk was making tweaks to reduce the round trip time for HTTPS requests.  Some techniques include reducing the number of available certificates, certificate chaining, smaller key size (obviously, this makes the cipher less secure), SSL sessions, and TCP False Start.</li>
+</ul>
+</li>
+<li><a href="http://omniti.com/surge/2012/sessions/when-nodejs-goes-wrong-debugging-node-in-production">When Node.js Goes Wrong: Debugging Node in Production</a>
+<ul>
+<li>David Pacheco gave some good tips for debugging Node.js in production.  Unfortunately, the event loop model is difficult to debug so this current requires analyzing core dumps and running dtrace (which still isn't available on Linux).</li>
+</ul>
+</li>
+<li><a href="http://omniti.com/surge/2012/sessions/scaling-in-the-cloud-at-cost-and-sla">Scaling in the Cloud at Cost and SLA</a></li>
+<li><a href="http://omniti.com/surge/2012/sessions/mysteries-of-a-cdn-explained">Mysteries of a CDN Explained</a></li>
+<li><a href="http://omniti.com/surge/2012/sessions/who-needs-clouds">Who Needs Clouds? HA in Your Datacenter</a></li>
+<li><a href="http://omniti.com/surge/2012/sessions/the-real-time-web-in-the-real-world-dirt-in-production">The Real-Time Web in the Real World: DIRT in Production</a>
+<ul>
+<li>The guys from Joyent didn't disappoint again this year; however, dtrace still isn't available for Linux so our hands are tied at work.  They did reference a great video of Brendan self inducing disk latency which is worth a <a href="http://www.youtube.com/watch?v=tDacjrSCeq4" target="_blank">watch</a>.</li>
+</ul>
+</li>
+<li><a href="http://omniti.com/surge/2012/sessions/xtreme-deployment">Xtreme Deployment</a></li>
+<li><a href="http://omniti.com/surge/2012/sessions/operating-at-scale">Operating at Scale</a></li>
+<li><a href="http://omniti.com/surge/2012/sessions/changing-etsys-architectural-foundation-with-continuous-deployment">Changing Etsy's Architectural Foundation with Continuous Deployment</a></li>
+<li><a href="http://omniti.com/surge/2012/sessions/monitoring-and-debugging-big-clusters-running-real-time-nosql-apps">Monitoring and Debugging Big Clusters Running Real-Time NoSQL Apps</a></li>
+</ul>
+<p>Related Links</p>
+<ul>
+<li><a href="http://www.slideshare.net/katemats/big-data-cachesurge2012">http://www.slideshare.net/katemats/big-data-cachesurge2012</a></li>
+<li><a href="http://www.slideshare.net/davidapacheco/surge2012">http://www.slideshare.net/davidapacheco/surge2012</a></li>
+<li><a href="http://obfuscurity.com/2012/09/monitoringsucks-bof-at-surge-2012" target="_blank">Monitoring Sucks</a></li>
+<li><a href="http://www.opscode.com/blog/2012/08/17/announcing-test-kitchen/" target="_blank">Test kitchen</a></li>
+<li><a href="https://github.com/jonlives/knife-spork" target="_blank">Spork</a></li>
+<li><a href="http://berkshelf.com/" target="_blank">Berkshelf</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Exponential_smoothing" target="_blank">Holt-Winders Exponential Smoothing</a></li>
+<li><a href="http://graphite.wikidot.com/" target="_blank">Graphite</a></li>
+<li><a href="http://logstash.net/" target="_blank">Log stash</a></li>
+</ul>
+<p>Videos</p>
+<p>http://www.youtube.com/watch?v=tDacjrSCeq4</p>
