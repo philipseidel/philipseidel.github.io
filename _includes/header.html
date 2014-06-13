@@ -1,0 +1,45 @@
+{% if include.cat == "Page" %}
+{% assign cat = page.categories[0] %}
+{% else %}
+{% assign cat = include.cat %}
+{% endif %}
+{% if cat contains "osts" %}
+{% assign posts = site.categories.posts %}
+{% elsif cat contains "rticles" %}
+{% assign posts = site.categories.articles %}
+{% elsif cat contains "ooks" %}
+{% assign posts = site.categories.books %}
+{% elsif cat contains "inks" %}
+{% assign posts = site.categories.links %}
+{% elsif cat contains "edia" %}
+{% assign posts = site.categories.media %}
+{% elsif cat contains "rchive" %}
+{% assign posts = site.posts %}
+{% endif %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon"> 
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<title>My Ramblings</title>
+<style type="text/css" media="screen">
+    <!-- @import url( /css/style.css ); -->
+</style>
+</head>
+<body>
+<div id="pages">    
+<h1><a href="/">My Ramblings</a></h1>
+<ul>
+  <li class="cat-item"><a href="/about/">About</a></li>
+  <li class="cat-item"><a href="/posts/" title="View all posts filed under Posts">Posts</a></li>
+  <li class="cat-item"><a href="/media/" title="View all posts filed under Media">Media</a></li>
+  <li class="cat-item"><a href="/links/" title="View all posts filed under Links">Links</a></li>
+  <li class="cat-item"><a href="/books/" title="View all posts filed under Books">Books</a></li>
+  <li class="cat-item"><a href="/articles/" title="View all posts filed under Articles">Articles</a></li>
+</ul>
+</div>
+<div id="wrap">
+<div id="logo"></div>
+<div id="tagline">If you are reading this you must be pretty bored&#8230;</div>
+<div id="content">
+    <div class="entry ">

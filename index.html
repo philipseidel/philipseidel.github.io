@@ -1,13 +1,14 @@
 ---
-layout: default
-title: Your New Jekyll Site
+title: My Ramblings
 ---
 
-<div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+{% include header.html cat="Posts" %}
+{% assign post = site.categories.posts.first %}
+<div class="entry ">
+<h3 class="entrytitle" id="post-{{ post.id }}">
+  <a href="{{ post.url }}" rel="bookmark"> {{ post.title }}</a>
+</h3>
+<div class="entrymeta">{{ post.date | date_to_long_string }}</div>
+<div class="entrybody">{{ post.content }}</div>
 </div>
+{% include footer.html cat="Posts" %}
