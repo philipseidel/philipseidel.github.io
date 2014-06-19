@@ -5,6 +5,6 @@
       <a href="{{ page.url }}" rel="bookmark"> {{ page.title }}</a>
     </h3>
     <div class="entrymeta">{{ page.date | date_to_long_string }}</div>
-    <div class="entrybody">{{ page.content }}</div>
+    <div class="entrybody">{{ page.content | markdownify }}</div>
     </div>
 {% include footer.html %}

@@ -478,3 +478,31 @@ img.alignleft {
 .alignleft {
 	float: left;
 }
+
+/* code */
+.entrybody pre {
+  border: 1px solid #ddd;
+  background-color: #ececec;
+  padding: 0 .4em;
+}
+
+.entrybody code {
+  border: 1px solid #ddd;
+  background-color: #ececec;
+  padding: 0 .2em;
+}
+
+.entrybody pre code {
+  border: none;
+}
+
+/* terminal */
+.entrybody pre.terminal {
+  border: 1px solid #000;
+  background-color: #333;
+  color: #FFF;
+}
+
+.entrybody pre.terminal code {
+  background-color: #333;
+}
