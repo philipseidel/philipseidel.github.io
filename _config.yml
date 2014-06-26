@@ -2,3 +2,5 @@ name: My Ramblings
 markdown: redcarpet
 pygments: true
 excerpt_separator: "<!--more-->"
+highlighter: pygments
+permalink: /:categories/:title/
